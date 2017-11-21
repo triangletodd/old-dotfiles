@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+is_wsl() {
+  grep -q Microsoft /proc/version
+}
+
+script_dir () {
+  local src dir
+
+  src="${BASH_SOURCE[0]}"
+  while [ -h "$src" ]; do
+    dir="$( cd -P "$( dirname "$src" )" && pwd )"
+    src="$( readlink "$src" )"
+    [[ $src != /* ]] && src="$dir/$src"
+  done
+  dir="$( cd -P "$( dirname "$src" )" && pwd )"
+  echo "$dir"
+}

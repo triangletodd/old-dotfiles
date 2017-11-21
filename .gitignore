@@ -1,4 +1,7 @@
 *
 !.gitignore
-!.bashrc*
-!bin
+!.bashrc
+!.bashrc.d/*
+!bin/*
+
+!*/
