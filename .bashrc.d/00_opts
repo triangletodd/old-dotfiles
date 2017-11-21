@@ -11,5 +11,7 @@ HISTCONTROL=ignoreboth
 HISTIGNORE='ls:bg:fg:history'
 HISTTIMEFORMAT='%F %T '
 
-EDITOR=vim
+VISUAL=vim
+EDITOR="$VISUAL"
+
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
