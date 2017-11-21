@@ -2,6 +2,11 @@
 !.gitignore
 !.bashrc
 !.bashrc.d/*
-!bin/*
+!.bash_logout
+!.profile
+!.tmux.conf
+!.vimrc
+!.vim/**
+!bin/**
 
 !*/
