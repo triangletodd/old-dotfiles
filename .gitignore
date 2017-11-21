@@ -1,6 +1,4 @@
 *
 !.gitignore
-!.bashrc.d
-!.bashrc.hosts
-!.bashrc.platforms
+!.bashrc*
 !bin
