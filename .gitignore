@@ -1,7 +1,8 @@
 *
 !.gitignore
+!Makefile
 !.bashrc
-!.bashrc.d/*
+!.bashrc.d/**
 !.bash_logout
 !.profile
 !.tmux.conf
