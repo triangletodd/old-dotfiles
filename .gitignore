@@ -1,0 +1,6 @@
+*
+!.gitignore
+!.bashrc.d
+!.bashrc.hosts
+!.bashrc.platforms
+!bin
