@@ -1,7 +1,6 @@
 *
 !.gitignore
 !.gitconfig
-!Makefile
 !.bashrc
 !.bashrc.d/**
 !.bash_logout
@@ -10,6 +9,4 @@
 !.vimrc
 !.vim/**
 !bin/**
-
-*/
 .vim/.netrwhist
