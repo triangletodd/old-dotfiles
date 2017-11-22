@@ -1,24 +1,28 @@
 # ~/.bashrc.d/20_prompt
 
-declare prompt_command='history -a; __git_ps1 "\u@\h:\w" "\\\$ "'
+declare p_cmd='history -a; __git_ps1 "\u@\h:\w" "\\\$ "'
 
 if is installed git; then
   declare git_bin="$(git --exec-path)"
-  source_if_f "$git_bin/git-sh-prompt"
+  declare git_ps="$git_bin/git-sh-prompt"
   
-  GIT_PS1_HIDE_IF_PWD_IGNORED=1
-  GIT_PS1_SHOWUPSTREAM="auto"
-  GIT_PS1_SHOWCOLORHINT=1
+  if is file "$git_ps"; then
+    source "$git_ps"
   
-  PS1="\u@\h:\w  $(__git_ps1 " (%s)")\\\$ "
+    GIT_PS1_HIDE_IF_PWD_IGNORED=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_SHOWCOLORHINT=1
+    
+    PS1="\u@\h:\w  $(__git_ps1 " (%s)")\\\$ "
+  fi
 fi
 
 if is not empty "$PROMPT_COMMAND"; then
   if [[ ! ${PROMPT_COMMAND: -1} == ';' ]]; then
     PROMPT_COMMAND+=';'
   fi
-  PROMPT_COMMAND+="$prompt_command"
+  PROMPT_COMMAND+="$p_cmd"
 else
-  PROMPT_COMMAND="$prompt_command"
+  PROMPT_COMMAND="$p_cmd"
 fi
 
