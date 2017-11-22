@@ -1,0 +1,4 @@
+# ~/.bashrc.d/99_wsl
+#
+
+if is_wsl; then cd; fi
