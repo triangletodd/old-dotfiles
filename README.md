@@ -1,14 +1,11 @@
-# dotfiles
 
-This is my ``HOME``.  There are many like it, but this one is mine.
-
-## Installation
+# Installation
 
 To set up a home directory, run:
 
     curl https://triangletodd.github.io/dotfiles/setup.sh | bash -ex
 
-## Technique
+# Technique
 
 This repo started as a fork of [stpierre/dotfiles](https://github.com/stpierre/dotfiles).
 
