@@ -9,4 +9,5 @@ git clone https://github.com/triangletodd/dotfiles.git $clone
 rsync -av --exclude 'README.md' $clone/ $dest/
 rm -rf $clone
 cd $dest
+git update-index --assume-unchanged README.md
 git status
