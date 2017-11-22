@@ -2,11 +2,11 @@
 
 declare p_cmd='history -a; __git_ps1 "\u@\h:\w" "\\\$ "'
 
-if is installed git; then
+if hash git 2> /dev/null; then
   declare git_bin="$(git --exec-path)"
   declare git_ps="$git_bin/git-sh-prompt"
   
-  if is file "$git_ps"; then
+  if [[ -f $git_ps ]]; then
     source "$git_ps"
   
     GIT_PS1_HIDE_IF_PWD_IGNORED=1
@@ -17,7 +17,7 @@ if is installed git; then
   fi
 fi
 
-if is not empty "$PROMPT_COMMAND"; then
+if [[ -n $PROMPT_COMMAND ]]; then
   if [[ ! ${PROMPT_COMMAND: -1} == ';' ]]; then
     PROMPT_COMMAND+=';'
   fi

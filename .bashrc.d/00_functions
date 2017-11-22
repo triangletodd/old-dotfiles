@@ -22,14 +22,8 @@ is() {
   esac
 }
 
-source_if_f() {
-  if is file "$1"; then
-    source "$1"
-  fi
-}
-
 is_wsl() {
-  grep -q Microsoft /proc/version
+  [[ -f /proc/version && $(</proc/version) == *Microsoft@Microsoft* ]]
 }
 
 script_dir () {
