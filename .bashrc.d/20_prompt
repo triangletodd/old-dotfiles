@@ -15,4 +15,4 @@ if is installed git; then
   source "$HOME/src/bash-git-prompt/gitprompt.sh"
 fi
 
-PROMPT_COMMAND+=';history -a; echo -ne "\034]0;${PWD}\007";'
+PROMPT_COMMAND+=';history -a;'
