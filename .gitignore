@@ -1,7 +1,6 @@
 *
 !.gitignore
 !.gitconfig
-!README.md
 !Makefile
 !.bashrc
 !.bashrc.d/**
@@ -12,5 +11,5 @@
 !.vim/**
 !bin/**
 
-!*/
+*/
 .vim/.netrwhist
