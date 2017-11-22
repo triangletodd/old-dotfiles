@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+# ~/.bashrc.d/20_prompt
 
-if hash git 2> /dev/null; then
+if is installed git; then
   source "$(git --exec-path)/git-sh-prompt"
 
   # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
@@ -15,4 +15,4 @@ if hash git 2> /dev/null; then
   source "$HOME/src/bash-git-prompt/gitprompt.sh"
 fi
 
-export PROMPT_COMMAND=$PROMPT_COMMAND'; history -a; echo -ne "\033]0;${PWD}\007"'
+PROMPT_COMMAND+=';history -a; echo -ne "\034]0;${PWD}\007";'
