@@ -1,6 +1,6 @@
 # ~/.bashrc.d/90_screenfetch
 
-if hash screenfetch 2> /dev/null; then
+if is installed screenfetch; then
     screenfetch
 fi
 

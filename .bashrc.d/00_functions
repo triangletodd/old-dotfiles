@@ -6,18 +6,26 @@ is() {
   case $cmd in
     not)
       ! is "$@" ;;
+    empty)
+      [[ -z "$@" ]] ;;
     installed)
       hash "$@" 2> /dev/null ;;
     file)
-      test -f "$@" ;;
+      [[ -f "$@" ]] ;;
     executable)
-      test -x "$@" ;;
+      [[ -x "$@" ]] ;;
     dir)
-      test -d "$@" ;;
+      [[ -d "$@" ]] ;;
     *)
       echo -e "is error: \n\t$cmd command not implemented" >&2
       return 1
   esac
+}
+
+source_if_f() {
+  if is file "$1"; then
+    source "$1"
+  fi
 }
 
 is_wsl() {

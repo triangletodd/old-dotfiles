@@ -1,18 +1,24 @@
 # ~/.bashrc.d/20_prompt
 
+declare prompt_command='history -a; __git_ps1 "\u@\h:\w" "\\\$ "'
+
 if is installed git; then
-  source "$(git --exec-path)/git-sh-prompt"
-
-  # GIT_PROMPT_FETCH_REMOTE_STATUS=0   # uncomment to avoid fetching remote status
-  # GIT_PROMPT_SHOW_UPSTREAM=1 # uncomment to show upstream tracking branch
-  # GIT_PROMPT_SHOW_UNTRACKED_FILES=all # can be no, normal or all; determines counting of untracked files
-  # GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=0 # uncomment to avoid printing the number of changed files
-  # GIT_PROMPT_STATUS_COMMAND=gitstatus_pre-1.7.10.sh # uncomment to support Git older than 1.7.10
-  # GIT_PROMPT_START=...    # uncomment for custom prompt start sequence
-  # GIT_PROMPT_END=...      # uncomment for custom prompt end sequence
-
-  #GIT_PROMPT_THEME=Solarized_Ubuntu
-  source "$HOME/src/bash-git-prompt/gitprompt.sh"
+  declare git_bin="$(git --exec-path)"
+  source_if_f "$git_bin/git-sh-prompt"
+  
+  GIT_PS1_HIDE_IF_PWD_IGNORED=1
+  GIT_PS1_SHOWUPSTREAM="auto"
+  GIT_PS1_SHOWCOLORHINT=1
+  
+  PS1="\u@\h:\w  $(__git_ps1 " (%s)")\\\$ "
 fi
 
-PROMPT_COMMAND+=';history -a;'
+if is not empty "$PROMPT_COMMAND"; then
+  if [[ ! ${PROMPT_COMMAND: -1} == ';' ]]; then
+    PROMPT_COMMAND+=';'
+  fi
+  PROMPT_COMMAND+="$prompt_command"
+else
+  PROMPT_COMMAND="$prompt_command"
+fi
+
