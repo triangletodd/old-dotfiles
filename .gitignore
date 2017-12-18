@@ -1,2 +1,6 @@
 bash/.bashrc.local.d/*
 !bash/.bashrc.local.d/.keep
+
+vim/.vim/.netrwhist
+vim/.vim/plugged/
+
