@@ -25,7 +25,6 @@ I will use the bash package in my example commands which expect a package name.
 ###### Unstow a single package
     make delete-bash
 
-
 ### Simulation runs
 All of the make commands can be prefixed with `dry-` which will do a simulation
 run of the command you prefixed.
@@ -48,7 +47,7 @@ run of the command you prefixed.
 ###### Simulate unstowing a single package
     make dry-delete-bash
 
-# More information:
+# More information
 #### GNU Make
 - [Homepage](https://www.gnu.org/software/make/)
 - [Manual](https://www.gnu.org/software/make/manual/make.html)
