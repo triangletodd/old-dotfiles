@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# ▞▀▖▞▀▖
+#  ▗▘▌▞▌  ▛▀▖▌ ▌▞▀▖▛▀▖▌ ▌
+# ▗▘ ▛ ▌  ▙▄▘▚▄▌▛▀ ▌ ▌▐▐
+# ▀▀▘▝▀▀▀▀▌  ▗▄▘▝▀▘▘ ▘ ▘
+#   https://github.com/pyenv/pyenv
+#   https://github.com/pyenv/pyenv-virtualenv
+
+if is installed pyenv; then
+  eval "$(pyenv init -)"
+fi
+
+if is installed pyenv-virtualenv; then
+  eval "$(pyenv virtualenv-init -)"
+fi

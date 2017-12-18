@@ -1,6 +1,0 @@
-# ~/.bashrc.d/90_screenfetch
-
-if hash screenfetch 2> /dev/null; then
-    screenfetch -E
-fi
-

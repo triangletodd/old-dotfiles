@@ -1,13 +1,58 @@
 
 # Installation
+### Download
+    git clone git@github.com:triangletodd/dotfiles.git
+    cd dotfiles
 
-To set up a home directory, run:
+### Using my Makefile
+I will use the bash package in my example commands which expect a package name.
 
-    curl https://triangletodd.github.io/dotfiles/setup.sh | bash -ex
+###### Stow all packages
+    make stow
 
-# Technique
+###### Restow all packages
+    make restow
 
-This repo started as a fork of [stpierre/dotfiles](https://github.com/stpierre/dotfiles).
+###### Delete all packages
+    make delete
 
-From [stpierre](https://github.com/stpierre/)'s README:
->My technique for managing this stuff is based on [rtomayko](https://github.com/rtomayko/)'s, which is outlined at [rtomayko/dotfiles](https://github.com/rtomayko/dotfiles).  Basically, my HOME is itself a git work tree, with repo data in ``~/.git``.  To prevent ``git status`` from being overwhelmingly noisy, I put ``*`` in ``~/.gitignore``.  This is the only difference between my approach and @rtomayko. With my approach, ``.gitignore`` is itself versioned, whereas his approach relies on the (unversioned) ``.git/info/exclude`` file.
+###### Stow a single package
+    make stow-bash
+
+###### Restow a single package
+    make restow-bash
+
+###### Unstow a single package
+    make delete-bash
+
+
+### Simulation runs
+All of the make commands can be prefixed with `dry-` which will do a simulation
+run of the command you prefixed.
+
+###### Simulate stowing all packages
+    make dry-stow
+
+###### Simulate restowing all packages
+    make dry-restow
+
+###### Simulate deleting all packages
+    make dry-delete
+
+###### Simulate stowing a single package
+    make dry-stow-bash
+
+###### Simulate restowing a single package
+    make dry-restow-bash
+
+###### Simulate unstowing a single package
+    make dry-delete-bash
+
+# More information:
+#### GNU Make
+- [Homepage](https://www.gnu.org/software/make/)
+- [Manual](https://www.gnu.org/software/make/manual/make.html)
+
+#### GNU Stow
+- [Homepage](https://www.gnu.org/software/stow/)
+- [Manual](https://www.gnu.org/software/stow/manual/stow.html)

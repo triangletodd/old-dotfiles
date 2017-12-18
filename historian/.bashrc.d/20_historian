@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+# ▞▀▖▞▀▖  ▌  ▗    ▐        ▗
+#  ▗▘▌▞▌  ▛▀▖▄ ▞▀▘▜▀ ▞▀▖▙▀▖▄ ▝▀▖▛▀▖
+# ▗▘ ▛ ▌  ▌ ▌▐ ▝▀▖▐ ▖▌ ▌▌  ▐ ▞▀▌▌ ▌
+# ▀▀▘▝▀▀▀▀▘ ▘▀▘▀▀  ▀ ▝▀ ▘  ▀▘▝▀▘▘ ▘
+# https://github.com/jcsalterego/historian
+
+if is installed hist; then
+  hist import > /dev/null
+fi

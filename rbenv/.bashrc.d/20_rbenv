@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# https://github.com/rbenv/rbenv
+
+if is installed rbenv; then
+  eval "$(rbenv init -)"
+fi

@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#░█             ████ ██          ██           ██
+#░█            ░██░ ░░   █████  ░██          ░██
+#░█           ██████ ██ ██░░░██ ░██  █████  ██████
+#░█          ░░░██░ ░██░██  ░██ ░██ ██░░░██░░░██░
+#░█            ░██  ░██░░██████ ░██░███████  ░██
+#░█            ░██  ░██ ░░░░░██ ░██░██░░░░   ░██
+#░█            ░██  ░██  █████  ███░░██████  ░░██
+#░█            ░░   ░░  ░░░░░  ░░░  ░░░░░░    ░░
+
+_toilet_suffix() {
+  case $(uname -s) in
+    Darwin)
+      echo '| tee >(pbcopy)' ;;
+  esac
+}
+
+alias toilet='toilet -d $HOME/.figlet_fonts'
+alias figlet='figlet -d $HOME/.figlet_fonts'
+
+3d() {
+  eval "toilet -f 3d $@ $(_toilet_suffix)"
+}
+
+smblock() {
+  eval "toilet -f smblock '$@' $(_toilet_suffix)"
+}

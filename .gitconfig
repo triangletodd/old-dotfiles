@@ -1,7 +1,0 @@
-[user]
-  email = todd@mtn.cc
-  name = Todd Edwards
-[push]
-  default = simple
-[core]
-  editor = vim

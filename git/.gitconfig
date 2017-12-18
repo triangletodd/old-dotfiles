@@ -1,0 +1,58 @@
+[color]
+  diff        = auto
+	status = always
+  branch      = auto
+  interactive = auto
+	ui = always
+  pager       = true
+[alias]
+  lol         = log --graph --pretty=format':%C(yellow)%h%C(cyan)%d%Creset %s %C(white) %an, %ar%Creset' --color=auto
+  ls          = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
+
+  ignore      = !git update-index --assume-unchanged
+  unignore    = !git update-index --no-assume-unchanged
+  ignored     = !git ls-files -v | grep ^[a-z]
+
+  smu            = submodule update
+  sm             = submodule
+  m              = merge --no-ff
+  co             = checkout
+  current-branch = !git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'
+  track          = checkout -t
+  new-branch     = checkout -b
+	g = grep --break --heading --line-number
+[apply]
+  whitespace     = warn
+[help]
+  autocorrect    = 1
+[status]
+  submodule      = 1
+[push]
+  default        = current
+[core]
+  excludesfile   = ~/.gitignore
+  editor = vim
+[pull]
+  rebase = preserve
+[rerere]
+  enabled = true
+[user]
+	name = Todd Edwards
+	email = todd.edwards@ingramcontent.com
+	signingkey = ACD861F90E167231
+[diff]
+  compactionHeuristic = true
+  tool = vimdiff
+[difftool]
+  prompt = false
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[grep]
+	extendRegexp = true
+	lineNumber = true

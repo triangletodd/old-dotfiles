@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#░█                     ██████   ██                       ██
+#░█            █████   ██░░░░██ ░██                      ░██
+#░█           ██░░░██ ██    ░░  ░██  ██████  ██   ██     ░██
+#░█          ░██  ░██░██        ░██ ██░░░░██░██  ░██  ██████
+#░█          ░░██████░██        ░██░██   ░██░██  ░██ ██░░░██
+#░█           ░░░░░██░░██    ██ ░██░██   ░██░██  ░██░██  ░██
+#░█            █████  ░░██████  ███░░██████ ░░██████░░██████
+#░█           ░░░░░    ░░░░░░  ░░░  ░░░░░░   ░░░░░░  ░░░░░░
+#░█           https://cloud.google.com/sdk/
+
+if hash gcloud 2> /dev/null; then
+    case $(uname -s) in
+      Darwin)
+        _gc_pre='/usr/local/Caskroom/google-cloud-sdk'
+        . "${_gc_pre}/latest/google-cloud-sdk/path.bash.inc"
+        . "${_gc_pre}/latest/google-cloud-sdk/completion.bash.inc"
+        unset _gc_pre
+        ;;
+    esac
+
+  #░█ aliases
+  alias gcloud='gcloud'
+  alias gssh='gcloud compute ssh'
+  alias gcil='gcloud compute instances list'
+  alias gdl='gcloud compute disks list'
+  alias gcon="echo \"Current project: \`gcloud config configurations list | grep True | grep -v grep | awk '{print \$1}'\`\";echo \"==============================================================\";echo \"Available projects:\";gcloud config configurations list | awk '{print \$1}' | grep -v NAME"
+  alias guse='gcloud config configurations activate'
+fi

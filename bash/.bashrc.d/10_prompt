@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+#░████████████████████████████████████████████████████████████████████████████░#
+#░█                                                                          █░#
+#░█                                                         ██               █░#
+#░█           ██████                              ██████   ░██               █░#
+#░█          ░██░░░██ ██████  ██████  ██████████ ░██░░░██ ██████             █░#
+#░█          ░██  ░██░░██░░█ ██░░░░██░░██░░██░░██░██  ░██░░░██░              █░#
+#░█          ░██████  ░██ ░ ░██   ░██ ░██ ░██ ░██░██████   ░██               █░#
+#░█          ░██░░░   ░██   ░██   ░██ ░██ ░██ ░██░██░░░    ░██               █░#
+#░█          ░██     ░███   ░░██████  ███ ░██ ░██░██       ░░██              █░#
+#░█          ░░      ░░░     ░░░░░░  ░░░  ░░  ░░ ░░         ░░               █░#
+#░█                                                                          █░#
+#░████████████████████████████████████████████████████████████████████████████░#
+
+export GIT_PS1_HIDE_IF_PWD_IGNORED=1
+export GIT_PS1_SHOWUPSTREAM=auto
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWCOLORHINTS=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export PS1="\u@\h:\w $ "
+
+if is installed git; then
+  if is not brewed git; then
+    declare git_bin="$(git --exec-path)"
+    declare git_sh="${git_bin}/git-sh-prompt"
+
+    if is readable "$git_sh"; then
+      source "$git_sh"
+      export PS1="\u@\h:\w $(__git_ps1) $ "
+    fi
+  else
+    declare brew_prefix="$(brew --prefix)"
+    declare completion_file="${brew_prefix}/etc/bash_completion"
+
+    if is readable "${completion_file}"; then
+      source "${completion_file}"
+      export PS1="\u@\h:\w $(__git_ps1) $ "
+
+    fi
+  fi
+fi
+
+declare prompt_cmd='history -a; __git_ps1 "\u@\h:\w" "\\\$ "'
+if is not empty "$PROMPT_COMMAND"; then
+  if [[ ! "${PROMPT_COMMAND: -1}" == ';' ]]; then PROMPT_COMMAND+=';'; fi
+  PROMPT_COMMAND+="$prompt_cmd"
+else
+  PROMPT_COMMAND="$prompt_cmd"
+fi
+

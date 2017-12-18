@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+#░████████████████████████████████████████████████████████████████████████████░#
+#░█                                                                          █░#
+#░█                      ██ ██                                               █░#
+#░█                     ░██░░                                                █░#
+#░█            ██████   ░██ ██  ██████    ██████  █████   ██████             █░#
+#░█           ░░░░░░██  ░██░██ ░░░░░░██  ██░░░░  ██░░░██ ██░░░░              █░#
+#░█            ███████  ░██░██  ███████ ░░█████ ░███████░░█████              █░#
+#░█           ██░░░░██  ░██░██ ██░░░░██  ░░░░░██░██░░░░  ░░░░░██             █░#
+#░█          ░░████████ ███░██░░████████ ██████ ░░██████ ██████              █░#
+#░█           ░░░░░░░░ ░░░ ░░  ░░░░░░░░ ░░░░░░   ░░░░░░ ░░░░░░               █░#
+#░█                                                                          █░#
+#░████████████████████████████████████████████████████████████████████████████░#
+
+#░█ System
+alias +x='chmod +x'
+
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+#░█ Atom TODO: move to stow package
+alias atom='atom -a'
+
+#░█ Ruby TODO: move to stow package
+alias bi='bundle install --path vendor'
+alias be='bundle exec'
+
+#░█ Kubernetes TODO: move to stow package
+alias k='kubectl'
+
+alias ku='kubectl get nodes --no-headers | awk '\''{print $1}'\'' | xargs -I {} sh -c '\''echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
+alias kcpu='ku | grep % | awk '\''{print $1}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*20), "%\n" } }'\'''
+alias kmem='ku | grep % | awk '\''{print $5}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*75), "%\n" } }'\'''
+
+alias k='kubectl'
+alias ks='kubectl --namespace=kube-system'
+alias kgp='k get po'
+alias ksgp='ks get po'
+alias kg='k get'
+alias ksg='ks get'
+alias kgr='k get po -o=custom-columns=NAME:.metadata.name,LIMITS:.spec.containers[0].resources'
+alias kl='k logs'
+alias klf='k logs -f'
+alias ksl='ks logs'
+alias kslf='ks logs -f'
+alias kd='k describe'
+alias ksd='ks describe'
+alias krm='k delete'
+alias ksrm='ks delete'
+alias ke='k exec -it'
+alias kcon="echo \"Current context: \`kubectl config current-context\`\";echo "==============================================================";k config view -o json | jq .contexts | jq .\[\].name | sed -e 's/\"//g'"
+alias kuse='k config use-context'
+alias list-kube-downloads="gsutil ls -R gs://kubernetes-release/release/v1.3.5 | sed 's|gs://kubernetes-release|https://storage.googleapis.com/kubernetes-release|; /^.*:$/d; /^$/d'"
+alias podme='k run `whoami` -i --tty --image-pull-policy=Always --rm --image alpine --restart Never --command -- ash'

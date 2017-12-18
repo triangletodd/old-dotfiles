@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#
+#   ▌        ▌    ▜             ▐
+#   ▛▀▖▝▀▖▞▀▘▛▀▖  ▐ ▞▀▖▞▀▌▞▀▖▌ ▌▜▀
+# ▗▖▌ ▌▞▀▌▝▀▖▌ ▌  ▐ ▌ ▌▚▄▌▌ ▌▌ ▌▐ ▖
+# ▝▘▀▀ ▝▀▘▀▀ ▘ ▘▀▀▀▘▝▀ ▗▄▘▝▀ ▝▀▘ ▀
+
+# clear screen when leaving console
+if [[ $SHLVL = 1 ]]; then
+    [[ -x /usr/bin/clear_console ]] && /usr/bin/clear_console -q
+fi
