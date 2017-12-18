@@ -5,7 +5,7 @@
     cd dotfiles
 
 ### Using my Makefile
-I will use the bash package in my example commands which expect a package name.
+I will use the bash package in my example commands that require a package name.
 
 ###### Stow all packages
     make stow
