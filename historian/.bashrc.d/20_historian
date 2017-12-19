@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
-#
-# ▞▀▖▞▀▖  ▌  ▗    ▐        ▗
-#  ▗▘▌▞▌  ▛▀▖▄ ▞▀▘▜▀ ▞▀▖▙▀▖▄ ▝▀▖▛▀▖
-# ▗▘ ▛ ▌  ▌ ▌▐ ▝▀▖▐ ▖▌ ▌▌  ▐ ▞▀▌▌ ▌
-# ▀▀▘▝▀▀▀▀▘ ▘▀▘▀▀  ▀ ▝▀ ▘  ▀▘▝▀▘▘ ▘
-# https://github.com/jcsalterego/historian
+#░█   ██      ██           ██                   ██
+#░█  ░██     ░░           ░██                  ░░
+#░█  ░██      ██  ██████ ██████  ██████  ██████ ██  ██████   ███████
+#░█  ░██████ ░██ ██░░░░ ░░░██░  ██░░░░██░░██░░█░██ ░░░░░░██ ░░██░░░██
+#░█  ░██░░░██░██░░█████   ░██  ░██   ░██ ░██ ░ ░██  ███████  ░██  ░██
+#░█  ░██  ░██░██ ░░░░░██  ░██  ░██   ░██ ░██   ░██ ██░░░░██  ░██  ░██
+#░█  ░██  ░██░██ ██████   ░░██ ░░██████ ░███   ░██░░████████ ███  ░██
+#░█  ░░   ░░ ░░ ░░░░░░     ░░   ░░░░░░  ░░░    ░░  ░░░░░░░░ ░░░   ░░
+#░█  https://github.com/jcsalterego/historian
 
-if is installed hist; then
+if hash hist 2> /dev/null; then
   hist import > /dev/null
+
+  HISTFILESIZE=100
+  HISTSIZE=100
+  HISTCONTROL=ignoreboth
+  HISTIGNORE='&:exit:ls:mv:bg:fg:history:hist'
+  HISTTIMEFORMAT='%F %T '
 fi

@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-#  ██
-# ░██
-# ░██      ██████  █████  ███     ██
-# ░██████ ░░██░░█ ██░░░██░░██  █ ░██
-# ░██░░░██ ░██ ░ ░███████ ░██ ███░██
-# ░██  ░██ ░██   ░██░░░░  ░████░████
-# ░██████ ░███   ░░██████ ███░ ░░░██
-# ░░░░░   ░░░     ░░░░░░ ░░░    ░░░
-#   https://brew.sh/
+#░█   ██
+#░█  ░██
+#░█  ░██      ██████  █████  ███     ██
+#░█  ░██████ ░░██░░█ ██░░░██░░██  █ ░██
+#░█  ░██░░░██ ░██ ░ ░███████ ░██ ███░██
+#░█  ░██  ░██ ░██   ░██░░░░  ░████░████
+#░█  ░██████ ░███   ░░██████ ███░ ░░░██
+#░█  ░░░░░   ░░░     ░░░░░░ ░░░    ░░░
+#░█    https://brew.sh/
 
 if hash brew 2> /dev/null; then
   declare brew_prefix="$(brew --prefix)"
@@ -21,7 +21,7 @@ if hash brew 2> /dev/null; then
     PATH="${brew_prefix}/opt/coreutils/libexec/gnubin:$PATH"
     MANPATH="${brew_prefix}/opt/coreutils/libexec/gnuman:$MANPATH"
   fi
-  
+
   unset brew_prefix completion_file
 fi
 

@@ -12,7 +12,7 @@
 #░█                                                                          █░#
 #░████████████████████████████████████████████████████████████████████████████░#
 
-#░█ base64 encode 
+#░█ base64 encode
 e64() {
   base64 -b0 <<< "$1"
 }
@@ -22,7 +22,7 @@ d64() {
   base64 -D <<< "$1"
 }
 
-#░█  current script's directory
+#░█ current script's directory
 script_dir() {
   local src dir
 
@@ -36,7 +36,7 @@ script_dir() {
   echo "$dir"
 }
 
-#░█  pipe things to atom (this sucks)
+#░█ pipe things to atom (this sucks)
 atom_pipe() {
   ATOM_TEMP=$(mktemp /tmp/atom.XXXX)
   cat > $ATOM_TEMP
@@ -44,7 +44,7 @@ atom_pipe() {
   rm $ATOM_TEMP
 }
 
-#░█  all the laziness
+#░█ all the laziness
 q() {
   mysql -u root $1 -e "$2"
 }

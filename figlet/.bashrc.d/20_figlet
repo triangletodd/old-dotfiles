@@ -1,27 +1,28 @@
 #!/usr/bin/env bash
-#░█             ████ ██          ██           ██
-#░█            ░██░ ░░   █████  ░██          ░██
-#░█           ██████ ██ ██░░░██ ░██  █████  ██████
-#░█          ░░░██░ ░██░██  ░██ ░██ ██░░░██░░░██░
-#░█            ░██  ░██░░██████ ░██░███████  ░██
-#░█            ░██  ░██ ░░░░░██ ░██░██░░░░   ░██
-#░█            ░██  ░██  █████  ███░░██████  ░░██
-#░█            ░░   ░░  ░░░░░  ░░░  ░░░░░░    ░░
+#░█     ████ ██          ██           ██
+#░█    ░██░ ░░   █████  ░██          ░██
+#░█   ██████ ██ ██░░░██ ░██  █████  ██████
+#░█  ░░░██░ ░██░██  ░██ ░██ ██░░░██░░░██░
+#░█    ░██  ░██░░██████ ░██░███████  ░██
+#░█    ░██  ░██ ░░░░░██ ░██░██░░░░   ░██
+#░█    ░██  ░██  █████  ███░░██████  ░░██
+#░█    ░░   ░░  ░░░░░  ░░░  ░░░░░░    ░░
 
-_toilet_suffix() {
+_figlet_suffix() {
   case $(uname -s) in
     Darwin)
       echo '| tee >(pbcopy)' ;;
   esac
 }
 
-alias toilet='toilet -d $HOME/.figlet_fonts'
-alias figlet='figlet -d $HOME/.figlet_fonts'
+if ! hash figlet 2> /dev/null; then
+  echo "ERR: figlet not installed"  && return 0
+fi
 
 3d() {
-  eval "toilet -f 3d $@ $(_toilet_suffix)"
+  eval "figlet -d ~/.figlet_fonts -f 3d $@ $(_figlet_suffix)"
 }
 
 smblock() {
-  eval "toilet -f smblock '$@' $(_toilet_suffix)"
+  eval "figlet -d ~/.figlet_fonts -f smblock '$@' $(_figlet_suffix)"
 }
