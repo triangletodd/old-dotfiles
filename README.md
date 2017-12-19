@@ -8,11 +8,22 @@
     ░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████
      ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░
  ```
- 
+
 # Installation
 ### Download
     git clone git@github.com:triangletodd/dotfiles.git
     cd dotfiles
+
+### Caveats
+Any stow packages in this repository that has a .bashrc.d folder requires either
+the bash package be stowed or the following line somewhere in your startup
+scripts:
+
+```shell
+for config in ~/.bashrc.d/*; do
+  source "$config"
+done
+```
 
 ### Using my Makefile
 I will use the bash package in my example commands that require a package name.
