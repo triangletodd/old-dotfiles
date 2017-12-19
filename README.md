@@ -26,7 +26,7 @@ done
 ```
 
 ### Using my Makefile
-I will use the bash package in my example commands that require a package name.
+I've used bash as an example for package specific tasks.
 
 ###### Stow all packages
     make stow
