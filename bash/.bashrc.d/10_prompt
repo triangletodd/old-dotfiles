@@ -34,7 +34,6 @@ _ps1_gcloud() {
   local gdir aconf conf gc_project
 
   if ! hash gcloud 2> /dev/null; then return; fi
-
   gdir="$HOME/.config/gcloud"
   aconf="$gdir/active_config"
 
