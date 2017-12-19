@@ -16,7 +16,7 @@
 
 ### Caveats
 Any of the stow packages in this repository that have a .bashrc.d folder
-require that the provided bash package be stowed or the following line
+require that the provided bash package be stowed or that the following lines be
 somewhere in your startup scripts (ie. ~/.bashrc):
 
 ```shell
