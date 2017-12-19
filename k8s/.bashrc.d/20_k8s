@@ -5,17 +5,13 @@
 # ▗▘ ▛ ▌  ▛▚ ▌ ▌▝▀▖
 # ▀▀▘▝▀▀▀▀▘ ▘▝▀ ▀▀
 #   https://kubernetes.io/docs/home/
-#
-#   TODO:
-#     not currently working...
 
-export K8_DISABLE_PROMPT=true
 export K8_HOME="$HOME/.kubeenv"
 
 export K8_ENV
-export K8_PRE_PS1
 export KUBECONFIG
 
+# Tab completion for k8 and k8_rm.
 function _kubeenv()
 {
     local cur opts
@@ -25,7 +21,7 @@ function _kubeenv()
     COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
     return 0
 }
-complete -o default -F _kubeenv k8 rmk8
+complete -o default -F _kubeenv k8 k8_rm
 
 function k8() {
     if [[ $# != 1 ]]; then
@@ -43,21 +39,11 @@ function k8() {
 
     KUBECONFIG="$K8_HOME/$K8_ENV"
     export KUBECONFIG
-
-    if [[ $K8_DISABLE_PROMPT != 1 ]]; then
-        K8_PRE_PS1="$PS1"
-        PS1="($1) $PS1"
-    fi
 }
 
 function k8_disable() {
     unset KUBECONFIG
     unset K8_ENV
-
-    if [[ $K8_DISABLE_PROMPT != 1 ]]; then
-        PS1="$K8_PRE_PS1"
-        unset K8_PRE_PS1
-    fi
 }
 
 function k8_rm() {
@@ -78,67 +64,3 @@ function k8_rm() {
 
     rm -f "$K8_HOME/$1"
 }
-
-# function k8() {
-#     local old_kube_env="$K8_ENV"
-#     if [ "$#" != "1" ]; then echo "Usage: k8 NAME" >&2; return 2; fi
-#     if [[ -n $K8_ENV ]] || [[ $1 == 'disable' ]]; then nok8; fi
-#     if [[ ! -d $K8_HOME ]]; then mkdir -p "$K8_HOME"; fi
-#
-#     K8_ENV="$1"
-#     export K8_ENV
-#
-#
-#     if [[ -f $K8_HOME/$K8_ENV ]]; then
-#       KUBECONFIG="$K8_HOME/$K8_ENV"
-#     else
-#       read -p "Do you want to create the kube env $KUBE_ENV?? [y/N] " yup
-#       if [[ $yup = "yes" -o $yup = "y" ]]; then
-#         touch "$K8_HOME/$KUBE_ENV"
-#         echo
-#         echo "Don't forget to pull the configuration..."
-#         echo "gcloud container clusters get-credentials <clustername>"
-#         echo
-#       else
-#         echo
-#         echo "Ok, bailing."
-#         echo
-#         KUBE_ENV=$old_kube_env
-#       fi
-#     fi
-#     export KUBE_ENV
-#
-#     if $KUBE_ENV_DISABLE_PROMPT; then
-#         KUBE_ENV_PRE_PS1="$PS1"
-#         PS1="($1) $PS1"
-#     fi
-# }
-#
-# function nok8() {
-#     unset
-#     unset KUBE_ENV
-#
-#     if [[ $KUBE_ENV_DISABLE_PROMPT != 1 ]]; then
-#         PS1="$KUBE_ENV_PRE_PS1"
-#         unset KUBE_ENV_PRE_PS1
-#     fi
-# }
-#
-# function rmk8() {
-#     if [[ $# != 1 ]]; then
-#         echo "Usage: rmk8 NAME" >&2
-#         return 2
-#     fi
-#
-#     if [[ $KUBE_ENV = $1 ]]; then
-#         echo "Can't delete active kubeenv. Run k8 disable before" >&2
-#         return 2
-#     fi
-#
-#     if [[ ! -e $K8_HOME/$1 ]]; then
-#         echo "kubeenv $1 doesn't exist" >&2
-#         return 2
-#     fi
-#
-#     rm -f "$HOME/.kubeenv/$1"
-# }

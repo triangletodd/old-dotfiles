@@ -12,22 +12,39 @@
 #░█                                                                          █░#
 #░████████████████████████████████████████████████████████████████████████████░#
 
-GIT_PS1_HIDE_IF_PWD_IGNORED=1
-GIT_PS1_SHOWUPSTREAM=auto
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWCOLORHINTS=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
+PS1='\u@\h'
+PROMPT_COMMAND='history -a;'
 
-PROMPT_COMMAND='history -a; hist import > /dev/null;'
+_ps1_gke() {
+  local context project zone cluster
+  context="$(sed -e '/^[ \t]*current-context/!d' -e 's/[ \t]*current-context: *//' ~/.kube/config)"
+  if [[ -z $context ]]; then return; fi
+  IFS=_ read _ project zone cluster <<< $context
+  if [[ -z $project ]] || [[ -z $cluster ]]; then return; fi
+  echo " k8s:($project|$cluster)"
+}
 
-if hash git 2> /dev/null; then
-  source ~/.config/dotfiles/git-completion.sh
-  source ~/.config/dotfiles/git-prompt.sh
+_ps1_gcloud() {
+  if ! hash gcloud 2> /dev/null; then return; fi
+  local gdir="$HOME/.config/gcloud"
+  local aconf="$gdir/active_config"
+  if [[ ! -r $aconf ]]; then return; fi
+  local conf="$gdir/configurations/config_$(<$aconf)"
+  if [[ ! -r $conf ]]; then return; fi
+  local gc_project="$(sed -e '/^ *project/!d' -e 's/ *project *= *//' $conf)"
+  if [[ -z $gc_project ]]; then return; fi
+  echo " gcloud:($gc_project)"
+}
 
-  _ps1_suffix='\\\$ '
-  _ps1_prefix='\u@\h:\w'
+_ps1_git() {
+  local branch="$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
+  if [[ -z $branch ]]; then return; fi
+  echo " git:($branch)"
+}
 
-  PROMPT_COMMAND+="__git_ps1 \"${_ps1_prefix}\" \"${_ps1_suffix}\""
-
-  unset _ps1_prefix _ps1_suffix
+# Rapidly import our bash history into sqlite
+if hash hist 2> /dev/null; then
+  PROMPT_COMMAND+='hist import > /dev/null;'
 fi
+
+PS1="$PS1\$(_ps1_gke)\$(_ps1_gcloud)\$(_ps1_git) \n\w $ "
