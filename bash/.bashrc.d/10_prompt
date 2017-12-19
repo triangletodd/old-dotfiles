@@ -17,11 +17,9 @@ PROMPT_COMMAND='history -a;'
 
 _ps1_gke() {
   local context project zone cluster conf
-  if [[ -n $KUBECONFIG ]]; then
-    conf="$KUBECONFIG"
-  else
-    conf="$HOME/.kube/config"
-  fi
+
+  if ! hash kubectl 2> /dev/null; then return; fi
+  if [[ -n $KUBECONFIG ]]; then conf="$KUBECONFIG"; else conf="$HOME/.kube/config"; fi
   if [[ ! -r $conf ]]; then return; fi
   context="$(sed -e '/^[ \t]*current-context/!d' -e 's/[ \t]*current-context: *//' $conf)"
 
