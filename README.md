@@ -48,7 +48,7 @@ I've used bash as an example for package specific tasks.
 
 ### Simulation runs
 All of the make commands can be prefixed with `dry-` which will do a simulation
-run of the command you prefixed.
+run of the command prefixed.
 
 ###### Simulate stowing all packages
     make dry-stow
