@@ -25,19 +25,21 @@ _ps1_gke() {
 }
 
 _ps1_gcloud() {
+  local gdir aconf conf gc_project
   if ! hash gcloud 2> /dev/null; then return; fi
-  local gdir="$HOME/.config/gcloud"
-  local aconf="$gdir/active_config"
+  gdir="$HOME/.config/gcloud"
+  aconf="$gdir/active_config"
   if [[ ! -r $aconf ]]; then return; fi
-  local conf="$gdir/configurations/config_$(<$aconf)"
+  conf="$gdir/configurations/config_$(<$aconf)"
   if [[ ! -r $conf ]]; then return; fi
-  local gc_project="$(sed -e '/^ *project/!d' -e 's/ *project *= *//' $conf)"
+  gc_project="$(sed -e '/^ *project/!d' -e 's/ *project *= *//' $conf)"
   if [[ -z $gc_project ]]; then return; fi
   echo " gcloud:($gc_project)"
 }
 
 _ps1_git() {
-  local branch="$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
+  local branch
+  branch="$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
   if [[ -z $branch ]]; then return; fi
   echo " git:($branch)"
 }
@@ -47,4 +49,4 @@ if hash hist 2> /dev/null; then
   PROMPT_COMMAND+='hist import > /dev/null;'
 fi
 
-PS1="$PS1\$(_ps1_gke)\$(_ps1_gcloud)\$(_ps1_git) \n\w $ "
+PS1="$PS1\$(_ps1_gke)\$(_ps1_gcloud)\$(_ps1_git) \n \w $ "
