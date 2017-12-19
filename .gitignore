@@ -4,3 +4,5 @@ bash/.bashrc.local.d/*
 vim/.vim/.netrwhist
 vim/.vim/plugged/
 
+bash/bin/*
+!bash/bin/.keep

@@ -9,11 +9,13 @@
 #░█   ░░░░░░  ░░░░░░   ░░░░░  ░░  ░░  ░░░░░░ ░░░
 #░█    https://docs.docker.com/
 
-#░█ aliases
-alias d='docker'
-alias di='docker images'
-alias dps='docker ps'
-alias dpa='docker ps -a'
-alias dcu="docker ps -a|grep Exit| awk '{print \$1}'|xargs docker rm && docker rmi \$(docker images -f "dangling=true" -q)"
-alias dr='docker run'
-alias dmem="for line in `docker ps | awk '{print $1}' | grep -v CONTAINER`; do docker ps | grep $line | awk '{printf $2\" \"$NF\" \"}' && cat /sys/fs/cgroup/memory/$line*/memory.usage_in_bytes | awk '{print $1/1024/1024\"MB\"}'; done | column -t"
+if hash docker 2> /dev/null; then
+  #░█ aliases
+  alias d='docker'
+  alias di='docker images'
+  alias dps='docker ps'
+  alias dpa='docker ps -a'
+  alias dcu="docker ps -a|grep Exit| awk '{print \$1}'|xargs docker rm && docker rmi \$(docker images -f "dangling=true" -q)"
+  alias dr='docker run'
+  alias dmem="for line in `docker ps | awk '{print $1}' | grep -v CONTAINER`; do docker ps | grep $line | awk '{printf $2\" \"$NF\" \"}' && cat /sys/fs/cgroup/memory/$line*/memory.usage_in_bytes | awk '{print $1/1024/1024\"MB\"}'; done | column -t"
+fi
