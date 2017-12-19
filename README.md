@@ -15,9 +15,9 @@
     cd dotfiles
 
 ### Caveats
-Any stow packages in this repository that has a .bashrc.d folder requires either
-the bash package be stowed or the following line somewhere in your startup
-scripts:
+Any of the stow packages in this repository that have a .bashrc.d folder
+require that the provided bash package be stowed or the following line
+somewhere in your startup scripts (ie. ~/.bashrc):
 
 ```shell
 for config in ~/.bashrc.d/*; do
