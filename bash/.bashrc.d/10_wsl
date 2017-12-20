@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
-#
-# ▗▌ ▞▀▖        ▜
-#  ▌ ▌▞▌ ▌  ▌▞▀▘▐
-#  ▌ ▛ ▌ ▐▐▐ ▝▀▖▐
-# ▝▀ ▝▀▀▀▀▘▘ ▀▀  ▘
+#░█                       ██
+#░█                      ░██
+#░█   ███     ██  ██████ ░██
+#░█  ░░██  █ ░██ ██░░░░  ░██
+#░█   ░██ ███░██░░█████  ░██
+#░█   ░████░████ ░░░░░██ ░██
+#░█   ███░ ░░░██ ██████  ███
+#░█  ░░░    ░░░ ░░░░░░  ░░░
+#░█   https://docs.microsoft.com/en-us/windows/wsl/about
 
 if [[ -f /proc/version && $(</proc/version) == *Microsoft@Microsoft* ]]; then
 	# Set correct umask
