@@ -9,6 +9,7 @@
 #░█    ░░░░░    ░░░░░░  ░░░  ░░░░░░   ░░░░░░  ░░░░░░
 #░█    https://cloud.google.com/sdk/
 
+
 if hash gcloud 2> /dev/null; then
     case $(uname -s) in
       Darwin)
@@ -24,5 +25,4 @@ if hash gcloud 2> /dev/null; then
   alias gssh='gcloud compute ssh'
   alias gcil='gcloud compute instances list'
   alias gdl='gcloud compute disks list'
-  alias guse='gcloud config configurations activate'
 fi
