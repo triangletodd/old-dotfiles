@@ -39,7 +39,7 @@
   enabled = true
 [user]
   name = Todd Edwards
-  email = todd.edwards@ingramcontent.com
+  email = todd.edwards@vitalsource.com
   signingkey = ACD861F90E167231
 [diff]
   compactionHeuristic = true
@@ -48,11 +48,6 @@
   prompt = false
 [commit]
   gpgsign = true
-[filter "lfs"]
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
 [grep]
   extendRegexp = true
   lineNumber = true
