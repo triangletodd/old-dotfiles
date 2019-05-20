@@ -17,4 +17,24 @@ shopt -s cmdhist
 VISUAL=vim
 EDITOR="$VISUAL"
 
+source "$HOME/src/github.com/vitalsource/vrse/SOURCEME"
+
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+if hash brew 2> /dev/null; then
+  if brew ls --versions coreutils > /dev/null; then
+    PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+    MANPATH="$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH"
+  fi
+fi
+
+if hash go 2> /dev/null; then
+  export GOPATH="$HOME"
+  export PATH="/usr/local/opt/go/libexec/bin:$PATH"
+fi
+
+# export PATH="/usr/local/opt/ruby/bin:$PATH"
+# export PATH="/usr/local/opt/libxml2/bin:$PATH"
+# export PATH="/usr/local/opt/icu4c/bin:$PATH"
+# export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+# export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"

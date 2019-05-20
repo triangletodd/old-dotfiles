@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+,""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: 
 "      	Todd Edwards
 "       todd@mtn.cc
@@ -9,6 +9,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
   Plug 'kien/ctrlp.vim'
+  Plug 'fatih/vim-go'
+  Plug 'scrooloose/nerdtree'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'ekalinin/Dockerfile.vim'
 call plug#end()
 
 
@@ -17,6 +21,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=500
+set number
 
 " Enable filetype plugins
 filetype plugin on
@@ -31,12 +36,17 @@ let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-nmap <leader>w :w!<cr>
+nmap <leader>w :w!<CR>
+nmap <leader>q :q!<CR>
+
+nmap <C-\> :vsplit<enter><CR>
+nmap <C-k><C-\> :split<enter><CR>
+nmap <C-b> :NERDTreeToggle<CR>
+nmap <C-t> :tabnew<CR>
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
-
+command! W w !sudo tee % > /dev/null
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -117,19 +127,15 @@ set foldcolumn=1
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
-try
-    colorscheme desert
-catch
-endtry
-
 set background=dark
+colorscheme solarized
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -164,7 +170,7 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
+" 1 tab == 2 spaces
 set shiftwidth=2
 set tabstop=2
 
@@ -313,6 +319,14 @@ map <leader>x :e ~/buffer.md<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+" Edit vimr configuration file
+nnoremap confe :e $MYVIMRC<CR>
+" Reload vims configuration file
+nnoremap confr :source $MYVIMRC<CR>
+" Edit vimr configuration file
+nnoremap <Leader>ve :e $MYVIMRC<CR>
+" " Reload vimr configuration file
+nnoremap <Leader>vr :source $MYVIMRC<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions

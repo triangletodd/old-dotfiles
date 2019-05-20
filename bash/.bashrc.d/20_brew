@@ -10,17 +10,8 @@
 #░█    https://brew.sh/
 
 if hash brew 2> /dev/null; then
-  declare brew_prefix="$(brew --prefix)"
-  declare completion_file="${brew_prefix}/etc/bash_completion"
-
-  if [[ -r $completion_file ]]; then
-    source "$completion_file"
-  fi
-
-  if brew ls --versions coreutils > /dev/null; then
-    PATH="${brew_prefix}/opt/coreutils/libexec/gnubin:$PATH"
-    MANPATH="${brew_prefix}/opt/coreutils/libexec/gnuman:$MANPATH"
-  fi
+  export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
+  [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
   unset brew_prefix completion_file
 fi

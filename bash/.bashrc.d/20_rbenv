@@ -9,6 +9,6 @@
 #░█  ░░░    ░░░░░    ░░░░░░ ░░░   ░░    ░░
 #░█   https://github.com/rbenv/rbenv
 
-if hash rbenv 2> /dev/null; then
-  eval "$(rbenv init -)"
-fi
+# if hash rbenv 2> /dev/null; then
+#   eval "$(rbenv init -)"
+# fi

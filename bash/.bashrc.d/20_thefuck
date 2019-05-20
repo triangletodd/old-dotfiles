@@ -9,6 +9,6 @@
 #░█     ░░  ░░   ░░  ░░░░░░   ░░    ░░░░░░  ░░░░░  ░░  ░░
 #░█       https://github.com/nvbn/thefuck
 
-if hash thefuck 2> /dev/null; then
-  eval "$(thefuck --alias)"
-fi
+# if hash thefuck 2> /dev/null; then
+#   eval "$(thefuck --alias)"
+# fi

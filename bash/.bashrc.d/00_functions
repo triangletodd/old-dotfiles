@@ -18,6 +18,11 @@ d64() {
   base64 -D <<< "$1"
 }
 
+#░█ print PATH values in order
+ppath() {
+  ( IFS=:; for i in $PATH; do echo $i; done; )
+}
+
 #░█ current script's directory
 script_dir() {
   local src dir
