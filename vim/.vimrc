@@ -8,11 +8,16 @@
 " => VimPlug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
+  Plug 'nvie/vim-flake8'
+  Plug 'fatih/vim-go'
   Plug 'kien/ctrlp.vim'
   Plug 'fatih/vim-go'
   Plug 'scrooloose/nerdtree'
   Plug 'altercation/vim-colors-solarized'
   Plug 'ekalinin/Dockerfile.vim'
+  Plug 'vim-python/python-syntax'
+  Plug 'tmhedberg/SimpylFold'
+  Plug 'christianrondeau/vim-base64'
 call plug#end()
 
 
@@ -35,18 +40,36 @@ set autoread
 let mapleader = ","
 let g:mapleader = ","
 
-" Fast saving
-nmap <leader>w :w!<CR>
-nmap <leader>q :q!<CR>
-
-nmap <C-\> :vsplit<enter><CR>
-nmap <C-k><C-\> :split<enter><CR>
-nmap <C-b> :NERDTreeToggle<CR>
-nmap <C-t> :tabnew<CR>
+set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵,space:·
 
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
 command! W w !sudo tee % > /dev/null
+
+" Fast saving
+nmap <leader>w :w!<CR>
+nmap <leader>W :W!<CR>
+nmap <leader>q :q!<CR>
+
+nmap <leader>l :set list!<CR>
+nmap <C-\> :vsplit<enter><CR>
+nmap <C-k><C-\> :split<enter><CR>
+nmap <C-b> :NERDTreeToggle<CR>
+nmap <C-t> :tabnew<CR>
+nmap <C-q> :s/\%V\(.*\)\%V/'\1'/<CR>
+nmap <C-Q> :s/\%V\(.*\)\%V/"\1"/<CR>
+
+nmap <leader>e <leader>btoa<CR>
+nmap <leader>d <leader>atob<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Python
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SimpylFold_docstring_preview = 0
+let g:SimpylFold_fold_docstring = 0
+let g:SimpylFold_fold_import = 0
+let g:python_highlight_all = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -210,12 +233,6 @@ map <C-l> <C-W>l
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
-
-" Close all the buffers
-map <leader>ba :bufdo bd<cr>
-
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
